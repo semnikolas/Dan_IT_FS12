@@ -1,4 +1,4 @@
-package java_core_hw_4;
+package java_core_hw_3_1;
 
 import java.util.Objects;
 import java.util.Scanner;
