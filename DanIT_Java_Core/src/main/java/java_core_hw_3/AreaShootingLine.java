@@ -6,18 +6,18 @@ import java.util.Scanner;
 
 public class AreaShootingLine {
     public static void main(String[] args) {
-        int[] check = new int[2];
+        int[] check;
         int[] shot = new int[2];
-        int pitofhell = 0;
-        int heaven = 4;
-        int shotLine = 0;
-        int shotColumn = 0;
+        int lowerLimit = 0;
+        int upperLimit = 4;
+        int shotLine;
+        int shotColumn;
         int wounded = 0;
         Scanner scan = new Scanner(System.in);
         String[][] secretField = {{".", ".", ".", ".", "."}, {".", ".", ".", ".", "."}, {".", ".", ".", ".", "."}, {".", ".", ".", ".", "."}, {".", ".", ".", ".", "."}};
         String[][] shotField = {{"o", "o", "o", "o", "o"}, {"o", "o", "o", "o", "o"}, {"o", "o", "o", "o", "o"}, {"o", "o", "o", "o", "o"}, {"o", "o", "o", "o", "o"}};
         secretField[shotRandom()][shotRandom()] = "*";
-        check = index(secretField);
+        check = secretShootAreaIndex(secretField);
         int firstCondition = check[0] % 2;
         int secondCondition = (check[0] + check[1]) % 2;
         if (firstCondition == 0 || secondCondition != 0) {
@@ -44,6 +44,7 @@ public class AreaShootingLine {
             }
         }
 
+        showField(secretField);
         System.out.println("All Set. Get ready to rumble!");
         showField(shotField);
 
@@ -54,7 +55,7 @@ public class AreaShootingLine {
                 try {
                     int lineNumber = Integer.parseInt(someValue);
 
-                    if (pitofhell > lineNumber || lineNumber > heaven) {
+                    if (lowerLimit > lineNumber || lineNumber > upperLimit) {
                         System.out.println("Your number is out of range. Please try again.");
                     } else {
                         shotLine = lineNumber;
@@ -62,7 +63,7 @@ public class AreaShootingLine {
                         break;
                     }
                 } catch (NumberFormatException e) {
-                    System.out.println("You enter some string!!!");
+                    System.out.println("You enter some string!!! Try again");
                 }
             }
             while (true) {
@@ -71,7 +72,7 @@ public class AreaShootingLine {
                 try {
                     int columnNumber = Integer.parseInt(someValue);
 
-                    if (pitofhell > columnNumber || columnNumber > heaven) {
+                    if (lowerLimit > columnNumber || columnNumber > upperLimit) {
                         System.out.println("Your number is out of range. Please try again.");
                     } else {
                         shotColumn = columnNumber;
@@ -79,7 +80,7 @@ public class AreaShootingLine {
                         break;
                     }
                 } catch (NumberFormatException e) {
-                    System.out.println("You enter some string!!!");
+                    System.out.println("You enter some string!!! Try again");
                 }
             }
 
@@ -117,10 +118,10 @@ public class AreaShootingLine {
         }
     }
 
-    public static int[] index(String[][] name) {
+    public static int[] secretShootAreaIndex(String[][] name) {
         int line = 0;
         int column = 0;
-        int[] shotPossition = new int[2];
+        int[] shotPossition = new int[6];
         for (int i = 0; i < name.length; i++) {
             for (int j = 0; j < name[i].length; j++) {
                 if (Objects.equals(name[i][j], "*")) {

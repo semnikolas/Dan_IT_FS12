@@ -4,11 +4,11 @@ import java.util.Scanner;
 
 public class Numbers {
     public static void main(String[] args) {
-        int cycle = 0;
-        int pitofhell = -1;
-        int heaven = 101;
-        int random = (int) (Math.random() * 101);
-        int[] results = new int[1];
+
+        int lowerLimit = -1;
+        int upperLimit = 101;
+        int secretNumber = (int) (Math.random() * 101);
+        int[] userEnteredNumbers = new int[1];
         int attempt = 0;
 
         Scanner scan = new Scanner(System.in);
@@ -22,30 +22,30 @@ public class Numbers {
 
             try {
                 int variant = Integer.parseInt(someValue);
-                results[attempt] = variant;
-                int[] tempResults = new int[results.length];
+                userEnteredNumbers[attempt] = variant;
+                int[] tempResults = new int[userEnteredNumbers.length];
 
-                System.arraycopy(results, 0, tempResults, 0, tempResults.length);
+                System.arraycopy(userEnteredNumbers, 0, tempResults, 0, tempResults.length);
 
-                if (variant == random) {
+                if (variant == secretNumber) {
                     System.out.println("Congratulations," + name);
                     System.out.println("All numbers you have entered:");
-                    for (int i = 0; i < results.length; i++) {
-                        System.out.print(results[i] + ", ");
+                    for (int i = 0; i < userEnteredNumbers.length; i++) {
+                        System.out.print(userEnteredNumbers[i] + ", ");
                     }
                     break;
-                } else if (pitofhell < variant && variant < random) {
+                } else if (lowerLimit < variant && variant < secretNumber) {
                     System.out.println("Your number too small. Please try again.");
                     ++attempt;
-                } else if (heaven > variant && variant > random) {
+                } else if (upperLimit > variant && variant > secretNumber) {
                     System.out.println("Your number too big. Please try again.");
                     ++attempt;
                 } else {
                     System.out.println("Your number is out of range. Please try again.");
                 }
 
-                results = new int[tempResults.length + 1];
-                System.arraycopy(tempResults, 0, results, 0, results.length - 1);
+                userEnteredNumbers = new int[tempResults.length + 1];
+                System.arraycopy(tempResults, 0, userEnteredNumbers, 0, userEnteredNumbers.length - 1);
             } catch (NumberFormatException e) {
                 System.out.println("You enter some string!!!");
             }
