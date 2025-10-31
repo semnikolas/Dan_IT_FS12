@@ -7,24 +7,16 @@ public class Scheduler {
     public static void main(String[] args) {
 
         Scanner scan = new Scanner(System.in);
-        String subChoice = new String();
-        String dayTitle = new String();
-        String dayTask = new String();
+        String subChoice;
+        String dayTitle;
+        String dayTask;
         String[][] weekTasks = {{"Sunday", "Task#1"}, {"Monday", "Task#2"}, {"Tuesday", "Task#3"}, {"Wednesday", "Task#4"}, {"Thursday", "Task#5"}, {"Friday", "Task#6"}, {"Saturday", "Task#7"}};
-
-        System.out.println("Welcome to your personal weekly scheduler!");
-        System.out.println("Please, chose an option:");
-        System.out.println("    1. Show list");
-        System.out.println("    2. Show day");
-        System.out.println("    3. Change day schedule");
-        System.out.println("    4. Help menu");
-        System.out.println("    5. Exit");
+        menuCall();
 
         while (true) {
-            System.out.println();
-            System.out.println("Enter the command:");
-            System.out.println();
-            String choice = (String) scan.nextLine().toLowerCase().trim();
+
+            System.out.println("\nEnter the command:\n");
+            String choice = scan.nextLine().toLowerCase().trim();
             if (Objects.equals(choice, "1")) {
                 choice = "show list";
             } else if (Objects.equals(choice, "2")) {
@@ -106,12 +98,7 @@ public class Scheduler {
                     System.out.println("Exiting.... See you...");
                     System.exit(0);
                 case "menu":
-                    System.out.println("Please, chose an option:");
-                    System.out.println("    1. Show list");
-                    System.out.println("    2. Show day");
-                    System.out.println("    3. Change day schedule");
-                    System.out.println("    4. Help menu");
-                    System.out.println("    5. Exit");
+                    menuCall();
                     break;
                 default:
                     System.out.println("No such command!");
@@ -128,7 +115,6 @@ public class Scheduler {
             System.out.println();
         }
     }
-
     public static void showDayTask(String[][] name, String value) {
         for (int i = 0; i < name.length; i++) {
             for (int j = 0; j < name[i].length; j++) {
@@ -139,7 +125,15 @@ public class Scheduler {
             }
         }
     }
-
+    public static void menuCall(){
+        System.out.println("Welcome to your personal weekly scheduler!");
+        System.out.println("Please, chose an option:");
+        System.out.println("    1. Show list");
+        System.out.println("    2. Show day");
+        System.out.println("    3. Change day schedule");
+        System.out.println("    4. Help menu");
+        System.out.println("    5. Exit");
+    }
     public static void changeDayTask(String[][] name, String value, String task) {
         for (int i = 0; i < name.length; i++) {
             for (int j = 0; j < name[i].length; j++) {
