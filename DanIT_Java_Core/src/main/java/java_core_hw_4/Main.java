@@ -2,23 +2,43 @@ package java_core_hw_4;
 
 public class Main {
     public static void main(String[] args) {
-        Human ruslan = new Human("Ruslan", "Topor", 1965);
-        Human olga = new Human("Olga", "Topor", 1966);
-        Human artem = new Human("Artem", "Pydoprugora", 1961);
-        Human alina = new Human("Alina", "Skalka", 1962);
-        Family artemAlinaPydoprugora = new Family(artem, alina, "Podoprygiry");
-        Human veraChild = new Human("Vera", "Pydoprugora", 2001);
-        Human lenaChild = new Human("Lena", "Pydoprugora", 2002);
 
-        Human petr = new Human ("Petr", "Topor", 1990, ruslan, olga);
-        Human lesya = new Human ("Lesya", "Topor", 1987, artem, alina);
-        Family petrLesyaTopor = new Family(petr, lesya, "Topor");
-
-
+        Pet dog01 = new Pet("Max", "dog Dog", 2);
+        String[] dog01Habits = new String[3];
         Pet cat01 = new Pet("Vasya", "cat Maine Coon", 1);
         String[] cat01Habits = new String[3];
+        Pet cat02 = new Pet("Elsa", "cat", 1);
+        String[] cat02Habits = new String[3];
+        Human ruslan = new Human();
+        Human olga = new Human();
+        Human artem = new Human("Artem", "Pydoprugora", 1985);
+        Human alina = new Human("Alina", "Skalka", 1987);
+        Family artemAlinaPydoprugora = new Family(artem, alina, "Podoprygiry");
+        Family ruslanOlgaTopor = new Family(ruslan, olga, "Topor");
+        Human veraChild = new Human("Vera", "Pydoprugora", 2001, artem, alina);
+        Human lenaChild = new Human("Lena", "Pydoprugora", 2002, artem, alina, 88, dog01);
+        Human igorChild = new Human("Igor", "Pydoprygora", 2013);
         veraChild.setPet(cat01);
+        System.out.println(veraChild.getPet() + "\n________________________");
+        System.out.println(lenaChild.getPet() + "\n________________________");
+        artem.setPet(cat02);
+        artem.setIq(123);
+        alina.setIq(99);
         artemAlinaPydoprugora.addChild(veraChild);
+        artemAlinaPydoprugora.addChild(lenaChild);
+        artemAlinaPydoprugora.addChild(igorChild);
+        artemAlinaPydoprugora.deleteChild(veraChild);
+
+        artem.showScheduler();
+        System.out.println("\n________________________");
+        System.out.println(alina + "\n________________________");
+        System.out.println(cat02 + "\n________________________");
+
+        System.out.println(artemAlinaPydoprugora);
+
+
+
+
 
 
 

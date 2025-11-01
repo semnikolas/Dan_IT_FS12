@@ -10,6 +10,7 @@ public class Pet {
     private int age;
     private int trickLevel;
     private String[] habits;
+    private Human owner;
 
     public Pet(String petName, String specie) {
         this.nickName = petName;
@@ -24,6 +25,14 @@ public class Pet {
 
     public Pet() {
 
+    }
+
+    public Human getOwner() {
+        return owner;
+    }
+
+    public void setOwner(Human owner) {
+        this.owner = owner;
     }
 
     public String getNickName() {
@@ -101,12 +110,14 @@ public class Pet {
     @Override
     public String toString() {
         String trickLevelString = (trickLevel <= 50) ? "Very tricky" : "Not very tricky";
+        String ownerInfo = (this.owner != null) ? this.owner.getName() : "Has no owner!";
         return specie +
-                "\n-nickName =" + " " + nickName +
-                "\n-age =" + " " + age +
-                "\n-trickLevel =" + " " + trickLevelString +
-                "\n-habits =" + Arrays.toString(habits) +
-                "\n-specie ='" + " " + specie;
+                "\n-nickName = " + nickName +
+                "\n-age = " + age +
+                "\n-trickLevel = " + trickLevelString +
+                "\n-habits = " + Arrays.toString(habits) +
+                "\n-specie = " + specie +
+                "\n-owner = " + ownerInfo;
 
 
     }

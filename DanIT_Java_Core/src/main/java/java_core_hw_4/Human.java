@@ -38,6 +38,7 @@ public class Human {
         this.hasFather = father;
         this.iq = iq;
         this.pet = pet;
+        pet.setOwner(this);
         generateScheduler();
     }
 
@@ -82,6 +83,7 @@ public class Human {
     }
 
     public void setPet(Pet pet) {
+        pet.setOwner(this);
         this.pet = pet;
     }
 
@@ -138,6 +140,7 @@ public class Human {
     }
 
     public void showScheduler() {
+        System.out.println("Scheduler of: " + this.name);
         for (int i = 0; i < this.scheduler.length; i++) {
             for (int j = 0; j < this.scheduler[i].length; j++) {
                 System.out.print(this.scheduler[i][j] + " ");
@@ -156,9 +159,6 @@ public class Human {
 
     @Override
     public String toString() {
-        //String familyInfo = (family != null) ? " In family " + family.getFamilyTitle() : " Not in family";
-        //String motherInfo = (this.hasMother != null) ? " Name of mother " + this.hasMother.name : " Has no mother";
-        //String fatherInfo = (this.hasFather != null) ? " Name of mother " + this.hasFather.name : " Has no father";
         String scheduleInfo = (this.scheduler != null) ? getSchedulerString() : " Has no Schedule";
 
         return "Human:" +

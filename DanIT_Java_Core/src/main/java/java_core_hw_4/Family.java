@@ -99,6 +99,7 @@ public class Family {
         String petFatherInfo = (father.getPet() != null) ? " Fathers pet is " + father.getPet().getNickName() : " Father has no pet.";
         String petMotherInfo = (mother.getPet() != null) ? " Mothers pet is " + mother.getPet().getNickName() : " Mother has no pet.";
         String childInfo = (this.getChildren() != null) ? " Family has " + this.childrenQuantity + ((this.childrenQuantity == 1) ? " child" : " children") : " Family has no children";
+
         return "Family contains of:" +
                 "\n-father= " + father +
                 "\n-mother= " + mother +
