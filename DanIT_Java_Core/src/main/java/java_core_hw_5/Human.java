@@ -1,4 +1,4 @@
-package java_core_hw_4;
+package java_core_hw_5;
 
 import java.util.Arrays;
 import java.util.Objects;
@@ -9,6 +9,8 @@ public class Human {
     private int year;
     private Pet pet;
     private int iq;
+    private Human hasMother;
+    private Human hasFather;
     private Family family;
     private String[][] scheduler;
 
@@ -23,6 +25,8 @@ public class Human {
         this.name = name;
         this.surname = surname;
         this.year = year;
+        this.hasMother = mother;
+        this.hasFather = father;
         generateScheduler();
     }
 
@@ -30,8 +34,11 @@ public class Human {
         this.name = name;
         this.surname = surname;
         this.year = year;
+        this.hasMother = mother;
+        this.hasFather = father;
         this.iq = iq;
         this.pet = pet;
+        pet.setOwner(this);
         generateScheduler();
     }
 
@@ -76,6 +83,7 @@ public class Human {
     }
 
     public void setPet(Pet pet) {
+        pet.setOwner(this);
         this.pet = pet;
     }
 
@@ -87,6 +95,22 @@ public class Human {
         if (iq >= 0 && iq <= 100) {
             this.iq = iq;
         }
+    }
+
+    public Human getHasMother() {
+        return hasMother;
+    }
+
+    public void setHasMother(Human hasMother) {
+        this.hasMother = hasMother;
+    }
+
+    public Human getHasFather() {
+        return hasFather;
+    }
+
+    public void setHasFather(Human hasFather) {
+        this.hasFather = hasFather;
     }
 
     public String[][] getScheduler() {
@@ -102,8 +126,7 @@ public class Human {
     }
 
     public void describePet() {
-        String describetrickLevelString = (pet.getTrickLevel() <= 50) ? "Very tricky" : "Not very tricky";
-        System.out.println("I have " + pet.getSpecie() + ", " + "it's " + pet.getAge() + ((pet.getAge() == 1) ? " year old" : " years old") + ", it's " + describetrickLevelString);
+        System.out.println(pet.toString());
     }
 
     private void generateScheduler() {
@@ -113,6 +136,7 @@ public class Human {
             this.scheduler[i][0] = days[i].getTitle();
             this.scheduler[i][1] = "Put some text here";
         }
+
     }
 
     public void showScheduler() {
@@ -149,11 +173,11 @@ public class Human {
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
         Human human = (Human) o;
-        return year == human.year && Objects.equals(name, human.name) && Objects.equals(surname, human.surname) && Objects.equals(family, human.family);
+        return year == human.year && Objects.equals(name, human.name) && Objects.equals(surname, human.surname) && Objects.equals(hasMother, human.hasMother) && Objects.equals(hasFather, human.hasFather) && Objects.equals(family, human.family);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(name, surname, year, family);
+        return Objects.hash(name, surname, year, hasMother, hasFather, family);
     }
 }

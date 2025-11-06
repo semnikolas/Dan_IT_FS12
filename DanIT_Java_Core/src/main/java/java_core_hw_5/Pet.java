@@ -1,4 +1,4 @@
-package java_core_hw_4;
+package java_core_hw_5;
 
 import java.util.Arrays;
 import java.util.Objects;
@@ -6,17 +6,18 @@ import java.util.Scanner;
 
 public class Pet {
     private String nickName;
-    private String specie;
+    private Species specie;
     private int age;
     private int trickLevel;
     private String[] habits;
+    private Human owner;
 
-    public Pet(String petName, String specie) {
+    public Pet(String petName, Species specie) {
         this.nickName = petName;
         this.specie = specie;
     }
 
-    public Pet(String petName, String specie, int age) {
+    public Pet(String petName, Species specie, int age) {
         this.nickName = petName;
         this.specie = specie;
         this.age = age;
@@ -26,11 +27,19 @@ public class Pet {
 
     }
 
+    public Human getOwner() {
+        return owner;
+    }
+
+    public void setOwner(Human owner) {
+        this.owner = owner;
+    }
+
     public String getNickName() {
         return nickName;
     }
 
-    public String getSpecie() {
+    public Species getSpecie() {
         return specie;
     }
 
@@ -46,7 +55,7 @@ public class Pet {
         this.nickName = nickName;
     }
 
-    public void setSpecie(String specie) {
+    public void setSpecie(Species specie) {
         this.specie = specie;
     }
 
@@ -65,7 +74,13 @@ public class Pet {
     }
 
     public void setHabits(String[] habits) {
-        this.habits = habits;
+        this.habits = new String[3];
+        Scanner scan = new Scanner(System.in);
+        for (int i = 0; i < this.habits.length; i++) {
+            int number = i + 1;
+            System.out.println("Enter habit number " + number);
+            this.habits[i] = scan.nextLine();
+        }
     }
 
     public void eat() {
@@ -95,11 +110,15 @@ public class Pet {
     @Override
     public String toString() {
         String trickLevelString = (trickLevel <= 50) ? "Very tricky" : "Not very tricky";
+        String ownerInfo = (this.owner != null) ? this.owner.getName() : "Has no owner!";
         return specie +
                 "\n-nickName = " + nickName +
                 "\n-age = " + age +
                 "\n-trickLevel = " + trickLevelString +
                 "\n-habits = " + Arrays.toString(habits) +
-                "\n-specie = " + specie;
+                "\n-specie = " + specie +
+                "\n-owner = " + ownerInfo;
+
+
     }
 }

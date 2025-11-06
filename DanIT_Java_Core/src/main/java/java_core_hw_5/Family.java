@@ -1,4 +1,4 @@
-package java_core_hw_4;
+package java_core_hw_5;
 
 import java.util.Arrays;
 import java.util.Objects;
@@ -9,15 +9,17 @@ public class Family {
     private Human mother;
     private Human[] children;
     private String familyTitle;
+    private int childrenQuantity;
+    private int familyContainsOf;
 
     public Family(Human father, Human mother, String familyTitle) {
         this.father = father;
         this.mother = mother;
         this.familyTitle = familyTitle;
-        this.children = new Human[0];
+        this.children = new Human[1];
         father.setFamily(this);
         mother.setFamily(this);
-        //this.familyContainsOf = 2;
+        this.familyContainsOf = 2;
     }
 
     public Human getFather() {
@@ -52,31 +54,32 @@ public class Family {
         this.children = children;
     }
 
-    public void addChild(Human child) {
-        if (this.children.length == 0) {
-            children = new Human[1];
-            children[0] = child;
-        } else {
-            Human[] tempChildren = Arrays.copyOf(this.children, this.children.length + 1);
-            tempChildren[tempChildren.length - 1] = child;
-            this.children = tempChildren;
-            child.setFamily(this);
-        }
-    }
-
-    public void deleteChild(Human child) {
+    public void addChild(Human name) {
+        Human[] tempChildren = new Human[this.children.length];
+        System.arraycopy(this.children, 0, tempChildren, 0, tempChildren.length);
         for (int i = 0; i < this.children.length; i++) {
-            if (Objects.equals(child, this.children[i])) {
-                child.setFamily(null);
-                Human[] tempChildren = Arrays.copyOf(this.children, this.children.length - 1);
-                this.children = tempChildren;
+            if (children[i] == null) {
+                name.setFamily(this);
+                ++this.childrenQuantity;
+                ++this.familyContainsOf;
+                tempChildren[i] = name;
+                this.children = new Human[tempChildren.length + 1];
+                System.arraycopy(tempChildren, 0, this.children, 0, tempChildren.length);
                 break;
             }
         }
     }
 
-    public Integer countFamily() {
-        return children.length + 2;
+    public void deleteChild(Human name) {
+        for (int i = 0; i < this.children.length; i++) {
+            if (Objects.equals(name, this.children[i])) {
+                name.setFamily(null);
+                --this.childrenQuantity;
+                --this.familyContainsOf;
+                this.children[i] = null;
+                break;
+            }
+        }
     }
 
     @Override
@@ -93,15 +96,20 @@ public class Family {
 
     @Override
     public String toString() {
-        String petFatherInfo = (father.getPet() != null) ? " Fathers pet is " + father.getPet().getNickName() : " Father has no pet.";
-        String petMotherInfo = (mother.getPet() != null) ? " Mothers pet is " + mother.getPet().getNickName() : " Mother has no pet.";
-        String childInfo = (this.getChildren() != null) ? " Family has " + this.children.length + ((this.children.length == 1) ? " child" : " children") : " Family has no children";
+        String petFatherInfo = (father.getPet() != null) ? " Fathers pet is " + father.getPet().getSpecie() + " " + father.getPet().getNickName() : " Father has no pet.";
+        String petMotherInfo = (mother.getPet() != null) ? " Mothers pet is " + mother.getPet().getSpecie() + " " + mother.getPet().getNickName() : " Mother has no pet.";
+        String childInfo = (this.getChildren() != null) ? " Family has " + this.childrenQuantity + ((this.childrenQuantity == 1) ? " child" : " children") : " Family has no children";
 
         return "Family contains of:" +
                 "\n-father= " + father +
                 "\n-mother= " + mother +
                 "\n-fathers pet= " + petFatherInfo +
                 "\n-mothers pet= " + petMotherInfo +
-                "\n-family contains of " + this.countFamily() + " people." + childInfo;
+                "\n-family contains of " + this.familyContainsOf + " people." + childInfo;
+    }
+
+    @Override
+    protected void finalize() throws Throwable {
+        super.finalize();
     }
 }
