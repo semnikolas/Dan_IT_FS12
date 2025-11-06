@@ -32,7 +32,6 @@ public class Main {
         artemAlinaPydoprugora.addChild(lenaChild);
         artemAlinaPydoprugora.addChild(igorChild);
         artemAlinaPydoprugora.deleteChild(veraChild);
-
         artem.showScheduler();
 
         System.out.println("\n________________________");
