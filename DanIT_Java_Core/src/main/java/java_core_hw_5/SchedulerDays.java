@@ -2,7 +2,6 @@ package java_core_hw_5;
 
 public enum SchedulerDays {
 
-
     MON("Monday"),
     TUE("Tuesday"),
     WED("Wednesday"),

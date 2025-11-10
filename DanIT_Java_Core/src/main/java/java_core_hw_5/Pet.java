@@ -2,7 +2,6 @@ package java_core_hw_5;
 
 import java.util.Arrays;
 import java.util.Objects;
-import java.util.Scanner;
 
 public class Pet {
     private String nickName;
