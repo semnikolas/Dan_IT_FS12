@@ -41,26 +41,6 @@ public class TestFamilyToString {
 
     }
 
-
-
-    @Test
-    public void testAddChildLegal() {
-        Human[] expectedChildArea = new Human[2];
-        expectedChildArea[0] = testChild;
-        Human[] tempChildren = new Human[testChildren.length];
-        System.arraycopy(testChildren, 0, tempChildren, 0, tempChildren.length);
-        for (int i = 0; i < testChildren.length; i++) {
-            if (testChildren[i] == null) {
-                tempChildren[i] = testChild;
-                testChildren = new Human[tempChildren.length + 1];
-                System.arraycopy(tempChildren, 0, testChildren, 0, tempChildren.length);
-                break;
-            }
-        }
-        assertEquals(expectedChildArea[0], testChildren[0], "Something wrong!");
-    }
-
-
         @Test
     public void testDeleteChild() {
         Human[] expectedChildArea = new Human[2];
@@ -118,6 +98,28 @@ public class TestFamilyToString {
             }
         }
         assertEquals(expectedChildArea[0], testChildren[0], "Something wrong!");
+    }
+
+    @Test
+    public void testAddChildLegal() {
+        Human[] expectedChildArea = new Human[2];
+        expectedChildArea[0] = testChild;
+        Human[] tempChildren = new Human[testChildren.length];
+        System.arraycopy(testChildren, 0, tempChildren, 0, tempChildren.length);
+        for (int i = 0; i < testChildren.length; i++) {
+            if (testChildren[i] == null) {
+                tempChildren[i] = testChild;
+                testChildren = new Human[tempChildren.length + 1];
+                System.arraycopy(tempChildren, 0, testChildren, 0, tempChildren.length);
+                break;
+            }
+        }
+        assertEquals(expectedChildArea[0], testChildren[0], "Something wrong!");
+    }
+
+    @Test
+    public void testCountFamily(){
+
     }
 
 

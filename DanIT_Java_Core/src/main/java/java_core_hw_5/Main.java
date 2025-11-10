@@ -36,5 +36,7 @@ public class Main {
         System.out.println(cat02 + "\n________________________");
 
         System.out.println(artemAlinaPydoprugora);
+
+        
     }
 }
