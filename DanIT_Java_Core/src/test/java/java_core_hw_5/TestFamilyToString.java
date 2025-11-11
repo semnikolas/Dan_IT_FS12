@@ -9,17 +9,15 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 
 public class TestFamilyToString {
+
     public Human testFather = new Human("John", "Testovich", 1985);
     public Human testMother = new Human("Jane", "Testovna", 1986);
     public Pet fatherPet = new Pet("Buddy", Species.CAT, 1);
-    public Pet motherPet = new Pet("Whiskers", Species.DOG, 1);
     public int testFamilyContainsOf = 2;
     public Integer testChildrenQuantity = 0;
     public Human testChild = new Human("Ben", "Testovich", 2005);
     public Human[] testChildren= new Human[1];
     Family testFamily = new Family(testFather, testMother, "Testovichy");
-
-
 
     @Test
     public void testTestToString() {
@@ -71,7 +69,6 @@ public class TestFamilyToString {
     @Test
     public void testDeleteChildIndex() {
         Human[] expectedChildArea = new Human[2];
-       // expectedChildArea[0] = testChild;
         Human[] testChildren= new Human[2];
         testChildren[0] = testChild;
         int index = 0;
@@ -119,9 +116,10 @@ public class TestFamilyToString {
 
     @Test
     public void testCountFamily(){
-
+        int expectedFamilyContainsOf = 3;
+        testFamily.addChild(testChild);
+        int familyContainsOf = testFamily.countFamily();
+        assertEquals(expectedFamilyContainsOf,familyContainsOf, "Something wrong!");
     }
-
-
 }
 
